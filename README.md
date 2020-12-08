@@ -1,2 +1,2 @@
 # holbertonschool-interview
-holberton interview styems
+holberton interview style problems
