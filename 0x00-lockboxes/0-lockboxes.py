@@ -1,22 +1,27 @@
 #!/usr/bin/python3
-"""lockbox intervew question"""
+"""opening lockboxes module file"""
 
 
 def canUnlockAll(boxes):
-    """
-    Method that determines if all the boxes can be opened.
-    """
+    """return true if all boxes can be unlocked, else false"""
     if not boxes:
         return False
+    locked = [x for x in range(len(boxes))]
+    locked[0] = 0
+    # print(locked)
+    locked = canUnlock(boxes, locked, 0)
+    # print("--------")
+    # print(locked)
+    if sum(locked) == 0:
+        return True
+    return False
 
-    n = len(boxes)
-    keys = [0]
 
-    for key in keys:
-        for box in boxes[key]:
-            if box < n and box not in keys:
-                keys.append(box)
-
-    if len(keys) != n:
-        return False
-    return True
+def canUnlock(boxes, locked, curIndex):
+    """determines lockednedd recursively, returns a list of locked boxes"""
+    # print(locked)
+    locked[curIndex] = 0
+    for key in boxes[curIndex]:
+        if key < len(boxes) and locked[key] != 0:
+            locked = canUnlock(boxes, locked, key)
+    return locked
