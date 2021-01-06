@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """minoperations file"""
 
 
@@ -22,3 +22,4 @@ def minOperations(n):
             # the first 1 represents the copy all operation
             # the i - i represents how many times to paste the current string
     return (n + 1)
+    # this return is only needed if the loop goes from 2, n instead of 2, n+1
