@@ -9,7 +9,7 @@
 */
 int is_palindrome(listint_t **head)
 {
-	listint_t **temp = head;
+	listint_t *temp = *head;
 	int n;
 
 	if (!head)
@@ -17,7 +17,8 @@ int is_palindrome(listint_t **head)
 	if (!(*head))
 		return (0);
 	n = is_palindrome_r(head, head);
-	head = temp;
+	head = &temp;
+	/* printf("n is %i \n", (*head)->n);*/
 	return (n);
 }
 
