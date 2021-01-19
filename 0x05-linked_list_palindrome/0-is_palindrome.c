@@ -9,13 +9,14 @@
 */
 int is_palindrome(listint_t **head)
 {
-	listint_t *temp = *head;
+	listint_t *temp;
 	int n;
 
 	if (!head)
 		return (0);
 	if (!(*head))
 		return (0);
+	temp = *head;
 	n = is_palindrome_r(head, head);
 	head = &temp;
 	/* printf("n is %i \n", (*head)->n);*/
