@@ -9,11 +9,16 @@
 */
 int is_palindrome(listint_t **head)
 {
+	listint_t **temp = head;
+	int n;
+
 	if (!head)
 		return (0);
 	if (!(*head))
 		return (0);
-	return (is_palindrome_r(head, head));
+	n = is_palindrome_r(head, head);
+	head = temp;
+	return (n);
 }
 
 /**
