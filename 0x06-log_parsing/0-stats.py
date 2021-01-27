@@ -26,7 +26,7 @@ try:
         words = line.split()
         # print("after split")
         # print("{}".format(len(words)))
-        if len(words) >= 2:
+        if len(words) > 2:
             #     raise Exception
             filesize += int(words[-1])
             code = int(words[-2])
