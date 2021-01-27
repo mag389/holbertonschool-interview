@@ -10,6 +10,7 @@ codes = [200, 301, 400, 401, 403, 404, 405, 500]
 coded = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
 
 """
+my initial method: had right ouput so i don't know why it failed
 def interrupted(signal, frame):
     "" what to do when an interrupt signal is given ""
     print("File size: {}".format(filesize))
@@ -29,14 +30,14 @@ try:
         counter += 1
         if counter == 10:
             print("File size: {}".format(filesize))
-            for num in sorted(codes):
-                if coded[int(num)] > 0:
-                    print(str(num) + ": " + str(coded[int(num)]))
+            for num in range(len(codes)):
+                if coded[int(codes[num])] > 0:
+                    print(str(codes[num]) + ": " + str(coded[int(codes[num])]))
             counter = 0
 except Exception:
     pass
 finally:
     print("File size: {}".format(filesize))
-    for num in sorted(codes):
-        if coded[int(num)] > 0:
-            print(str(num) + ": " + str(coded[int(num)]))
+    for num in range(len(codes)):
+        if coded[int(codes[num])] > 0:
+            print(str(codes[num]) + ": " + str(coded[int(codes[num])]))
