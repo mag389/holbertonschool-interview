@@ -26,8 +26,8 @@ try:
         words = line.split()
         # print("after split")
         # print("{}".format(len(words)))
-        if len(words) != 9:
-            raise Exception
+        # if len(words) != 9:
+        #     raise Exception
         filesize += int(words[-1])
         code = int(words[-2])
         coded[code] += 1
