@@ -28,7 +28,7 @@ for line in sys.stdin:
     counter += 1
     if counter == 10:
         print("File size: {}".format(filesize))
-        for num in codes:
+        for num in sorted(codes):
             if coded[int(num)] > 0:
                 print(str(num) + ": " + str(coded[int(num)]))
         counter = 0
