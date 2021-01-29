@@ -26,12 +26,13 @@ try:
         words = line.split()
         # print("after split")
         # print("{}".format(len(words)))
-        if len(words) > 2:
-            #     raise Exception
+        try:
             filesize += int(words[-1])
             code = int(words[-2])
             coded[code] += 1
             counter += 1
+        except Exception:
+            continue
         if counter == 10:
             print("File size: {}".format(filesize))
             for num in range(len(codes)):
