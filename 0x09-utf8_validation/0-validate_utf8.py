@@ -9,8 +9,9 @@ def validUTF8(data):
     """
     numbytes = 0
     for number in data:
+        number = number & 255
         if numbytes == 0:
-            if number >= 0 and number <= 128:
+            if number >= 0 and number <= 127:
                 continue
             if number <= 223:
                 numbytes += 1
