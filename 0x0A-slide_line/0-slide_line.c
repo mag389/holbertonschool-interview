@@ -26,7 +26,7 @@ int slide_line(int *line, size_t size, int direction)
 			cur_val = i;
 			i += j;
 		}
-		printf("%i %i\n", cur_val, i);
+		/* printf("%i %i\n", cur_val, i); */
 		if (line[i] == line[cur_val] && line[cur_val] && i != cur_val)
 		{
 			line[cur_val] *= 2;
