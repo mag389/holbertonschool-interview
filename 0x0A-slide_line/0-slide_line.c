@@ -16,7 +16,7 @@ int slide_line(int *line, size_t size, int direction)
 		return (0);
 	if (direction != 0 && direction != 1)
 		return (0);
-	if (j == 1)
+	if (direction == 1)
 		reverse(line, size);
 	/* printf("i starts at %i\n", i); */
 	for (; i <= Size && cur_val < Size && i >= 0;)
@@ -26,8 +26,8 @@ int slide_line(int *line, size_t size, int direction)
 			cur_val = i;
 			i += j;
 		}
-		/* printf("%i %i\n", cur_val, i); */
-		if (line[i] == line[cur_val] && line[cur_val] != 0)
+		printf("%i %i\n", cur_val, i);
+		if (line[i] == line[cur_val] && line[cur_val] && i != cur_val)
 		{
 			line[cur_val] *= 2;
 			line[i] = 0;
