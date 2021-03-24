@@ -4,7 +4,7 @@
 * sorted_array_to_avl - makes an avl tree from sorted array
 * Return: pointer to root node of avl tree
 * @array: sorted array of ints to make into tree
-* @size: how many ints are in size
+* @size: number of int elements in array
 */
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
