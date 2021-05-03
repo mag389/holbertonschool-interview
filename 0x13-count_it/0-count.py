@@ -11,16 +11,8 @@ def recurse(subreddit, word_list, hot_list=[], after=""):
     """ uses reddit api to give top 10 hot posts
         in a subreddit
     """
-    # print(after)
-    # if len(hot_list) % 100 == 0:
-    #     time.sleep(60)
     custom_user = {"User-Agent": "custom"}
     url = "https://www.reddit.com/r/" + subreddit + "/hot.json"
-    # print(url)
-    # if after == "":
-    #    # params = {'limit': 1, 'count': 1}
-    # else:
-    #    # params = {'limit': 1, 'count': 1, 'after': after}
     params = {'after': after}
     # print("right before request")
     res = requests.get(url,
@@ -31,7 +23,6 @@ def recurse(subreddit, word_list, hot_list=[], after=""):
         return(None)
     else:
         info = res.json()
-        # print(info)
         children = info.get('data').get('children')
         if children is None or len(children) == 0:
             return (hot_list)
@@ -51,6 +42,8 @@ def recurse(subreddit, word_list, hot_list=[], after=""):
 def count_words(subreddit, word_list, count_list=[]):
     """ counts occurences of words in hot subreddit title list """
     title_list = recurse(subreddit, word_list, [], "")
+    if type(title_list) is not list:
+        return
     title_list = " ".join(title_list).lower().split()
     # print(title_list)
     word_dict = count_occurs(title_list, word_list)
