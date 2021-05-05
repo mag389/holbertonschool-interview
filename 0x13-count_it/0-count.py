@@ -74,8 +74,9 @@ def icount_occurs(title_list, word_list, word_dict={}):
 
 
 def print_occurs(word_dict):
-    """ prints the dictionary sorted """
-    lst = sorted(word_dict.items(), key=itemgetter(1))
+    """ sorts the dict to pass to printer """
+    lst = sorted(word_dict.items(), key=lambda x: (-x[1], x[0]))
+    # print(lst)
     print_lst(lst)
     return lst
 
@@ -84,7 +85,7 @@ def print_lst(sorted_list):
     """ print the list of words and numbers """
     if len(sorted_list) < 1:
         return None
-    tupword = sorted_list.pop()
+    tupword = sorted_list.pop(0)
     if tupword[1] == 0:
         print_lst(sorted_list)
     else:
