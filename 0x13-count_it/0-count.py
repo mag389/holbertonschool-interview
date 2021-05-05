@@ -33,9 +33,9 @@ def count_words(subreddit, word_list, count_list=[]):
     title_list = recurse(subreddit, [], "")
     if type(title_list) is not list:
         return
-    title_list = " ".join(title_list).lower().split()
+    # title_list = " ".join(title_list).lower().split()
     # word_dict = count_occurs(" ".join(title_list).lower(), word_list)
-    word_dict = icount_occurs(title_list, word_list)
+    word_dict = count_occurs(title_list, word_list)
     print_occurs(word_dict)
 
 
@@ -51,25 +51,6 @@ def count_occurs(title_list, word_list, word_dict={}):
     if len(word_list) < 1:
         return word_dict
     return count_occurs(title_list, word_list, word_dict)
-
-
-# this one miscounts b.c of multiple words in same title
-def bcount_occurs(title_block, word_list, word_dict={}):
-    """ count words without .count() """
-    import re
-    word = word_list[-1].lower()
-    if word in word_dict.keys():
-        # word_dict[word] += len(re.findall(word + '(?!\w+)', title_block,
-        #                                   flags=re.IGNORECASE))
-        word_dict[word] += title_block.count(word)
-    else:
-        # word_dict[word] = len(re.findall(word + '(?!\w+)', title_block,
-        #                                  flags=re.IGNORECASE))
-        word_dict[word] = title_block.count(word)
-    word_list.pop()
-    if len(word_list) < 1:
-        return word_dict
-    return bcount_occurs(title_block, word_list, word_dict)
 
 
 # this also counts mutiples more than once
