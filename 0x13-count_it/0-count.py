@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ script to scrape and count words from reddit hot posts
 """
+from operator import itemgetter
 import requests
 
 
@@ -69,7 +70,6 @@ def icount_occurs(title_list, word_list, word_dict={}):
 
 def print_occurs(word_dict):
     """ prints the dictionary sorted """
-    from operator import itemgetter
     lst = sorted(word_dict.items(), key=itemgetter(1))
     print_lst(lst)
     return lst
