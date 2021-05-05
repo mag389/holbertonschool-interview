@@ -14,27 +14,18 @@ def recurse(subreddit, word_list, hot_list=[], after=""):
     custom_user = {"User-Agent": "custom"}
     url = "https://www.reddit.com/r/" + subreddit + "/hot.json"
     params = {'after': after}
-    # print("right before request")
     res = requests.get(url,
                        headers=custom_user, params=params,
                        allow_redirects=False)
-    # print(res.status_code)
+
     if res.status_code != 200:
-        return(None)
+        return None
     else:
         info = res.json()
         children = info.get('data').get('children')
-        if children is None or len(children) == 0:
-            print("in the if")
-            return (hot_list)
         for child in children:
             hot_list.append(child.get('data').get("title"))
-        # child = children[len(children) - 1]
-        # title = child.get('data').get("title")
-        # print(title)
-        # hot_list.append(child.get('data').get("title"))
         after = info.get('data').get('after')
-        # print(after)
         if after == 'null' or after is None:
             return (hot_list)
         return (recurse(subreddit, word_list, hot_list, after))
@@ -46,7 +37,6 @@ def count_words(subreddit, word_list, count_list=[]):
     if type(title_list) is not list:
         return
     title_list = " ".join(title_list).lower().split()
-    # print(title_list)
     word_dict = count_occurs(" ".join(title_list).lower(), word_list)
     # word_dict = icount_occurs(title_list, word_list)
     print_occurs(word_dict)
