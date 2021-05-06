@@ -40,6 +40,14 @@ def count_words(subreddit, word_list, count_list=[]):
 
 def count_occurs(title_list, word_list, word_dict={}):
     """ counts occurences, but only counts once per title """
+    for word in word_list:
+        word = word.lower()
+        if word not in word_dict.keys():
+            word_dict[word] = 0
+        for title in title_list:
+            if word in title.lower().split():
+                word_dict[word] += title.lower().split().count(word.lower())
+    return word_dict
     # print(word_list)
     # print("and")
     # print(word_dict)
