@@ -34,8 +34,6 @@ def count_words(subreddit, word_list, count_list=[]):
     title_list = recurse(subreddit, [], "")
     if type(title_list) is not list:
         return
-    # title_list = " ".join(title_list).lower().split()
-    # word_dict = count_occurs(" ".join(title_list).lower(), word_list)
     word_dict = count_occurs(title_list, word_list)
     print_occurs(word_dict)
 
@@ -50,8 +48,6 @@ def count_occurs(title_list, word_list, word_dict={}):
         word_dict[word] = 0
     for title in title_list:
         if word in title.lower().split():
-            # if word == "react":
-            #     print(title)
             word_dict[word] += title.lower().split().count(word)
     word_list.pop()
     if len(word_list) < 1:
@@ -59,26 +55,11 @@ def count_occurs(title_list, word_list, word_dict={}):
     return count_occurs(title_list, word_list, word_dict)
 
 
-# this also counts mutiples more than once
-def icount_occurs(title_list, word_list, word_dict={}):
-    """ counts occurences of words in a list of titles """
-    word = word_list[-1].lower()
-    if word in word_dict.keys():
-        word_dict[word] += title_list.count(word)
-    else:
-        word_dict[word] = title_list.count(word)
-    word_list.pop()
-    if len(word_list) < 1:
-        return word_dict
-    return icount_occurs(title_list, word_list, word_dict)
-
-
 def print_occurs(word_dict):
     """ sorts the dict to pass to printer """
     lst = sorted(word_dict.items(), key=lambda x: (-x[1], x[0]))
-    # print(lst)
     print_lst(lst)
-    return lst
+    return
 
 
 def print_lst(sorted_list):
@@ -91,6 +72,4 @@ def print_lst(sorted_list):
     else:
         w, a = tupword
         print("{}: {}".format(w, a))
-        # print(tupword[0] + ": ", end="")
-        # print(tupword[1])
         print_lst(sorted_list)
