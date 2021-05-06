@@ -64,6 +64,10 @@ def print_occurs(word_dict):
 
 def print_lst(sorted_list):
     """ print the list of words and numbers """
+    for pair in sorted_list:
+        if pair[1] != 0:
+            print("{}: {}".format(pair[0], pair[1]))
+    return
     if len(sorted_list) < 1:
         return None
     tupword = sorted_list.pop(0)
