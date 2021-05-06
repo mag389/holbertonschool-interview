@@ -89,6 +89,8 @@ def print_lst(sorted_list):
     if tupword[1] == 0:
         print_lst(sorted_list)
     else:
-        print(tupword[0] + ": ", end="")
-        print(tupword[1])
+        w, a = tupword
+        print("{}: {}".format(w, a))
+        # print(tupword[0] + ": ", end="")
+        # print(tupword[1])
         print_lst(sorted_list)
