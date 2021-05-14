@@ -1,5 +1,6 @@
 #include "binary_trees.h"
 
+heap_t *get_last_node(heap_t *root);
 /**
 * heap_extract - extracts the top value from the heap
 * Return: the value if extracted else 0
@@ -8,25 +9,44 @@
 int heap_extract(heap_t **root)
 {
 	/*int ret, sizeleft, sizeright, lf, rf, temp, size;*/
-	int temp, size;
+	int value, size;
 	heap_t *last;
 
 	if (!root || !(*root))
 		return (0);
+	/* printf("into the next extract %i\n", (*root)->n);*/
 	size = binary_tree_size(*root);
+	/* printf("into the next extract %i\n", (*root)->n);*/
 	last = last_levelorder(*root, 0, size - 1);
+	/* printf("does it fault in last\n");*/
+	/*if (last == NULL) */
+		/* printf("last is NULL\n"); */
+	/*last = last_levelorder(*root, 0, size - 1);*/
+	if (last == *root)
+	{
+		value = (*root)->n;
+		free(*root);
+		*root = NULL;
+		return (value);
+	}
+	/* printf("right before value check\n");*/
+	value = last->n;
+	/* printf("exctracting new value %i\n", value);*/
 
-	temp = last->n;
 	last->n = (*root)->n;
-	(*root)->n = temp;
+	(*root)->n = value;
+	/* printf("later the root is %i\n", (*root)->n);*/
 	if (last->parent && last->parent->left == last)
 		last->parent->left = NULL;
-	if (last->parent && last->parent->right == last)
+	else if (last->parent && last->parent->right == last)
 		last->parent->right = NULL;
-	temp = last->n;
+	value = last->n;
 	free(last);
+	/* printf("before rebuild %i\n", (*root)->n);*/
 	rebuild(*root);
-	return (temp);
+	/* printf("after rebuild %i\n", (*root)->n);*/
+
+	return (value);
 }
 
 /**
@@ -40,7 +60,31 @@ size_t binary_tree_size(const binary_tree_t *tree)
 		return (0);
 	return (1 + binary_tree_size(tree->left) + binary_tree_size(tree->right));
 }
+/**
+* get_last_node - nonrecursive method
+* @root: pointer to root of heap
+* Return: heap_t of last node
+*/
+heap_t *get_last_node(heap_t *root)
+{
+	unsigned int n_nodes, mask = 1;
 
+	n_nodes = binary_tree_size(root);
+	while (n_nodes / mask > 1)
+		mask = mask << 1;
+	mask = mask >> 1;
+
+	while (mask)
+	{
+		if (n_nodes & mask)
+			root = root->right;
+		else
+			root = root->left;
+		mask = mask >> 1;
+	}
+
+	return (root);
+}
 /**
 * last_levelorder - return last node in level order
 * Return: heap_t
@@ -54,6 +98,7 @@ heap_t *last_levelorder(heap_t *root, int index, int size)
 
 	if (!root)
 		return (NULL);
+	/* printf("in last node %i\n", (root)->n);*/
 	if (index > size)
 		return (NULL);
 	if (index == size)
@@ -74,41 +119,36 @@ heap_t *last_levelorder(heap_t *root, int index, int size)
 heap_t *rebuild(heap_t *root)
 {
 	int temp;
+	heap_t *swap_node = root;
 
 	if (!root)
 		return (NULL);
 	if (!(root->left) && !(root->right))
 		return (NULL);
-	if (root->left && !(root->right) && root->left->n > root->n)
+	if (root->left && root->right)
 	{
-		temp = root->left->n;
-		root->left->n = root->n;
-		root->n = temp;
-		rebuild(root->left);
-	}
-	else if (root->right && !(root->left))
-	{
-		if (root->right->n > root->n)
+		if (root->left->n >= root->right->n)
 		{
-			temp = root->right->n;
-			root->right->n = root->n;
-			root->n = temp;
-			rebuild(root->right);
+			if (root->left->n > root->n)
+				swap_node = root->left;
+		}
+		else
+		{
+			if (root->right->n > root->n)
+				swap_node = root->right;
 		}
 	}
-	else if (root->left->n > root->n && root->left->n > root->right->n)
+	else if (root->left && !(root->right) && root->left->n > root->n)
+		swap_node = root->left;
+	else if (root->right && !(root->left) && root->right->n > root->n)
+		swap_node = root->right;
+	/* printf("in rebuild root=%i\n", root->n);*/
+	if (swap_node != root)
 	{
-		temp = root->left->n;
-		root->left->n = root->n;
+		temp = swap_node->n;
+		swap_node->n = root->n;
 		root->n = temp;
-		rebuild(root->left);
-	}
-	else if (root->right->n > root->n && root->right->n > root->left->n)
-	{
-		temp = root->right->n;
-		root->right->n = root->n;
-		root->n = temp;
-		rebuild(root->right);
+		rebuild(swap_node);
 	}
 	return (NULL);
 }
