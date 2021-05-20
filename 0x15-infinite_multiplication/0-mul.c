@@ -56,17 +56,22 @@ int main(int argc, char *argv[])
 */
 void putarray(int *buffer, int size)
 {
-	int i;
+	int i, z = 0;
 
 	for (i = 0; i < size; i++)
 	{
 		if (buffer[i] != 0)
+		{
+			z = 1;
 			break;
+		}
 	}
 	for (; i < size; i++)
 	{
 		_putchar(buffer[i] + '0');
 	}
+	if (z == 0)
+		_putchar('0');
 	_putchar('\n');
 }
 /**
