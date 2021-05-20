@@ -25,14 +25,15 @@ int main(int argc, char *argv[])
 	l2 = get_len(argv[2]);
 	w1 = ca_to_ia(argv[1], l1);
 	w2 = ca_to_ia(argv[2], l2);
-
-	pr_int_arr(w1, l1);
-	pr_int_arr(w2, l2);
-
-	printf("both arrays made\n");
-	printf("l1 %i, l2%i\n", l1, l2);
+/*
+*	pr_int_arr(w1, l1);
+*	pr_int_arr(w2, l2);
+*
+*	printf("both arrays made\n");
+*	printf("l1 %i, l2%i\n", l1, l2);
+*/
 	ret = big_mul(w1, w2, l1, l2);
-	pr_int_arr(ret, (l1 + l2) * 1.5);
+/*	pr_int_arr(ret, (l1 + l2) * 1.5);*/
 	putarray(ret, (l1 + l2) * 1.5);
 	free(ret);
 	free(w1);
@@ -78,8 +79,10 @@ void carryover(int *buffer, int size)
 {
 	int i;
 
-	printf("begin carryover\n");
-	pr_int_arr(buffer, size);
+/*
+*	printf("begin carryover\n");
+*	pr_int_arr(buffer, size);
+*/
 	for (i = size - 1; i > 0; i--)
 	{
 		if (buffer[i] > 9)
@@ -88,8 +91,10 @@ void carryover(int *buffer, int size)
 			buffer[i] = buffer[i] % 10;
 		}
 	}
-	printf("end carryover\n");
-	pr_int_arr(buffer, size);
+/*
+*	printf("end carryover\n");
+*	pr_int_arr(buffer, size);
+*/
 }
 /**
 * lit_mul - mutiply array by one int
@@ -107,11 +112,11 @@ int *lit_mul(int *w1, int l1, int n, int *buffer, int size)
 	j = size - 1;
 	for (i = l1 - 1; i >= 0; i--)
 	{
-		printf("in loop i %i j %i \n", i, j);
+/*		printf("in loop i %i j %i \n", i, j);*/
 		buffer[j] += w1[i] * n;
 		j--;
 	}
-	printf("finished loop in lit mul\n");
+/*	printf("finished loop in lit mul\n");*/
 	carryover(buffer, size);
 	return (buffer);
 }
@@ -127,11 +132,11 @@ int *big_mul(int *w1, int *w2, int l1, int l2)
 {
 	int *buffer, size, i, j = 0;
 
-	printf("in big mul\n");
+/*	printf("in big mul\n");*/
 	size = (l1 + l2) * 1.5;
 	buffer = make_buffer(l1, l2);
 
-	printf("buffer made in big mul, calling lit mul\n");
+/*	printf("buffer made in big mul, calling lit mul\n");*/
 	for (i = l2 - 1; i >= 0; i--)
 	{
 		buffer = lit_mul(w1, l1, w2[i], buffer, size - j);
@@ -153,16 +158,16 @@ int *make_buffer(int l1, int l2)
 {
 	int size, i, *buffer;
 
-	printf("in make buffer\n");
+/*	printf("in make buffer\n");*/
 	size = (l1 + l2) * 1.5;
-	printf("size if %i", size);
+/*	printf("size if %i", size);*/
 	buffer = malloc(size * sizeof(int));
 	if (!buffer)
 		bad_exit();
-	printf("right after malloc in make buffer\n");
+/*	printf("right after malloc in make buffer\n");*/
 	for (i = 0; i < size; i++)
 		buffer[i] = 0;
-	pr_int_arr(buffer, size);
+/*	pr_int_arr(buffer, size);*/
 	return (buffer);
 }
 /**
@@ -230,7 +235,7 @@ int *ca_to_ia(char *word, int len)
 		else
 		{
 			retval[counter] = word[counter] - 48;
-			printf("in catoia %i\n", retval[counter]);
+/*			printf("in catoia %i\n", retval[counter]);*/
 		}
 		counter--;
 	}
