@@ -1,6 +1,5 @@
 #include "lists.h"
 listint_t *rec_loop(listint_t *head, listint_t *tort, listint_t *hare);
-/*listint_t *locate_loop(listint_t *head, listint_t *tort, listint_t *hare);*/
 /**
 * find_listint_loop - finds loop in linked list
 * Return: the loop node, or NULL
@@ -52,41 +51,3 @@ listint_t *rec_loop(listint_t *head, listint_t *tort, listint_t *hare)
 	}
 	return (hare);
 }
-/**
-* locate_loop: actually locates the linked list loop
-* Return: the start of the loop
-* @head:the head node
-* @tort: a node known to be in the loop
-* @hare: a moving node stuck in the loop
-*/
-/*
-* prototype here locate loop
-* {
-*/
-/*
-*	printf("in locate loop\n");
-*	printf("initial tort: %d hare: %d \n", tort->n, hare->n);
-*/
-/*
-*	if (tort == hare)
-*		hare = hare->next;
-*	while (head != hare)
-*	{
-*		while (hare != tort)
-*		{
-*			if (head == hare)
-*				return (head);
-*			hare = hare->next;
-*/
-/*			printf("hare: %d going around\n", hare->n);*/
-/*		}*/
-/*		printf("moving head: %d \n", head->n);*/
-/*
-*		head = head->next;
-*		hare = hare->next;
-*		if (head == hare || head == tort)
-*			return (head);
-*	}
-*	return (head);
-*}
-*/
