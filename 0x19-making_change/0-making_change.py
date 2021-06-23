@@ -34,8 +34,10 @@ def makeChange(coins, total):
     # print(minCoins[total])
     # print(usedCoins)
     totally = minCoins[total]
+    totally = total
     while totally > 0:
-        if usedCoins[totally] <= 0:
+        # print("used {}".format(totally))
+        if usedCoins[totally] < 0:
             # print("return in while")
             return -1
         totally -= usedCoins[totally]
