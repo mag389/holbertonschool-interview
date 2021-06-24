@@ -5,10 +5,6 @@ import numpy as np
 
 def makeChange(coins, total):
     """ makes change for total amount from coin values in coins """
-    if type(total) is not int:
-        return 0
-    if type(coins) is not list or len(coins) <= 0:
-        return 0
     if total <= 0:
         return 0
     if total in coins:
