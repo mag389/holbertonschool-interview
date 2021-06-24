@@ -9,6 +9,8 @@ def makeChange(coins, total):
         return 0
     if type(coins) is not list or len(coins) <= 0:
         return 0
+    if total <= 0:
+        return 0
     if total in coins:
         return 1
     else:
