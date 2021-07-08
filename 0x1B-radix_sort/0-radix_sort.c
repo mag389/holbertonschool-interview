@@ -8,7 +8,7 @@ void radix_sort_r(int *array, size_t size, int step);
 */
 void radix_sort(int *array, size_t size)
 {
-	if (!array || size < 1)
+	if (!array || size <= 1)
 		return;
 	radix_sort_r(array, size, 1);
 }
