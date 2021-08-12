@@ -70,6 +70,8 @@ int starcomp(char const *str, char const *pattern)
 /*		printf("in 5 ");*/
 		return (starcomp(str, &pattern[2]));
 	}
+	if (str[0] == 0 && pattern[0] == '.' && pattern[1] == '*')
+		return (starcomp(str, &pattern[2]));
 	if (str[0] == 0 || pattern[0] == 0)
 	{
 /*		printf("the extra check\n");*/
