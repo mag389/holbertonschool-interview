@@ -23,25 +23,25 @@ int *find_substring(char const *s, char const **words, int nb_words, int *n)
 		return (NULL);
 	for (i = 0; i <= s_len - nb_words * len; i++)
 	{
-		printf("i: %i\n", i);
+/*		printf("i: %i\n", i);*/
 		found = 0, used = 0;
 		for (j = 0; j < nb_words; j++)
 		{
 			if ((found & (1 << j)) == 0 &&
 				!strncmp(&s[i + used * len], words[j], len))
 			{
-				printf("strings %s %s\n", &s[i + used * len], words[j]);
-				printf("into if j:%i i:%i\n", j, i);
-				printf("\t prior found: %i\n", found);
+/*				printf("strings %s %s\n", &s[i + used * len], words[j]);*/
+/*				printf("into if j:%i i:%i\n", j, i);*/
+/*				printf("\t prior found: %i\n", found);*/
 				found = found | 1 << j;
-				printf("\t post  found: %i\n", found);
+/*				printf("\t post  found: %i\n", found);*/
 				j = -1;
 				used++;
 			}
 		}
 		if (found == (1 << nb_cpy) - 1)
 		{
-			printf("\t found: %i i: %i\n", found, i);
+/*			printf("\t found: %i i: %i\n", found, i);*/
 			inds[*n] = i;
 			(*n)++;
 		}
