@@ -2,6 +2,7 @@
 
 a function that searches a string for a substring containing all the words from a given list.
 The substring must contain the words from the given list and no other characters.
+Returns list of indices of substrings.
 If there is no such substring found returns NULL.
 
 
