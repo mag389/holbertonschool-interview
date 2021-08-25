@@ -13,7 +13,7 @@ def isWinner(x, nums):
     if x <= 2 or nums is None:
         return None
     ben, maria = 0, 0
-    a = [1 for x in range(sorted(nums)[-1])]
+    a = [1 for x in range(sorted(nums)[-1] + 1)]
     a[0], a[1] = 0, 0
     for i in range(2, len(a)):
         remove_multiples(a, i)
