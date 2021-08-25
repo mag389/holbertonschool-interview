@@ -10,7 +10,7 @@ def isWinner(x, nums):
             or None if undetermined
         n and x both <= 10000
     """
-    if x <= 2 or nums is None:
+    if x <= 0 or nums is None:
         return None
     if x != len(nums):
         return None
