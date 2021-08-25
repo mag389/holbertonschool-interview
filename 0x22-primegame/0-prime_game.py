@@ -10,6 +10,8 @@ def isWinner(x, nums):
             or None if undetermined
         n and x both <= 10000
     """
+    if x <= 2 or nums == None
+        return None
     ben, maria = 0, 0
     a = [1 for x in range(sorted(nums)[-1])]
     a[0], a[1] = 0, 0
