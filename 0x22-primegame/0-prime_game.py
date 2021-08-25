@@ -12,6 +12,8 @@ def isWinner(x, nums):
     """
     if x <= 2 or nums is None:
         return None
+    if x > len(nums):
+        return None
     ben, maria = 0, 0
     a = [1 for x in range(sorted(nums)[-1] + 1)]
     a[0], a[1] = 0, 0
